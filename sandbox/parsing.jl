@@ -64,6 +64,37 @@ r.name
 # ╔═╡ 8aa587ce-4c10-11eb-3f8e-552c82686791
 r.namespace
 
+# ╔═╡ ae26b88c-4c16-11eb-1810-773fd7111ee0
+kiddos = nodes(r)
+
+# ╔═╡ b7a622ee-4c16-11eb-2605-c936fa2eb71d
+typeof(kiddos[1])
+
+# ╔═╡ 0994c86c-4c17-11eb-2546-0d6cfa2c66d0
+function typedreply(n)
+	if n.type === EzXML.ELEMENT_NODE begin
+			
+		"It's a element so walk down the tree"
+		end
+	elseif 	n.type == EzXML.TEXT_NODE
+		"text node so collect contents " * n.content
+	else
+		"Type not handled: "
+	end
+end
+
+# ╔═╡ 7fc2677e-4c17-11eb-22d6-5366b20f834f
+typedreply(kiddos[3])
+
+# ╔═╡ 28fdaa66-4c17-11eb-1b16-6d2ebb7cfbd4
+map(n -> typedreply(n), kiddos)
+
+# ╔═╡ a39ac57a-4c16-11eb-2ae7-698bb726a1c9
+md"""---
+
+XPaths
+"""
+
 # ╔═╡ 921e7a68-4c10-11eb-1c26-f98aec9e0c49
 nodes(r)
 
@@ -87,7 +118,7 @@ countattributes(nodes(divs[3])[2])
 attrs = attributes(nodes(divs[3])[2])
 
 # ╔═╡ c23b3ca0-4c14-11eb-3b5f-cb7fd7f04b95
-divs[1].name
+divs[1]
 
 # ╔═╡ 34fa49d0-4c14-11eb-1195-1332e2649c27
 attrs[1]
@@ -138,6 +169,12 @@ elementopen(divs[1])
 # ╠═d7f65038-4c10-11eb-2fb2-eb470cd75dbd
 # ╠═7eee7f88-4c10-11eb-06b3-e5d98838308e
 # ╠═8aa587ce-4c10-11eb-3f8e-552c82686791
+# ╠═ae26b88c-4c16-11eb-1810-773fd7111ee0
+# ╠═b7a622ee-4c16-11eb-2605-c936fa2eb71d
+# ╠═0994c86c-4c17-11eb-2546-0d6cfa2c66d0
+# ╠═7fc2677e-4c17-11eb-22d6-5366b20f834f
+# ╠═28fdaa66-4c17-11eb-1b16-6d2ebb7cfbd4
+# ╟─a39ac57a-4c16-11eb-2ae7-698bb726a1c9
 # ╠═921e7a68-4c10-11eb-1c26-f98aec9e0c49
 # ╠═687e3724-4c11-11eb-1e64-fb6efd5802ab
 # ╠═fd0f6938-4c11-11eb-312f-c95356a03933
