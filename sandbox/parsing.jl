@@ -55,14 +55,62 @@ r.namespace
 # ╔═╡ 921e7a68-4c10-11eb-1c26-f98aec9e0c49
 nodes(r)
 
-# ╔═╡ 687e3724-4c11-11eb-1e64-fb6efd5802ab
-findall("//div", doc)
-
 # ╔═╡ c04206f2-4c11-11eb-31c4-45d878cb2532
 tei = namespace(doc.root)
 
+# ╔═╡ 687e3724-4c11-11eb-1e64-fb6efd5802ab
+findall("//div", doc)
+
 # ╔═╡ fd0f6938-4c11-11eb-312f-c95356a03933
-findall("//ns:div", doc.root, ["ns"=> tei]) 
+divs = findall("//ns:div", doc.root, ["ns"=> tei]) 
+
+# ╔═╡ ed65231a-4c13-11eb-278e-f9f4d1af5c57
+map(d -> d.name, divs)
+
+# ╔═╡ 93e465f4-4c12-11eb-2491-413112e60d3f
+nodes(divs[3])[2]
+
+
+# ╔═╡ 968d136e-4c12-11eb-1043-39e7d6df24f0
+countattributes(nodes(divs[3])[2])
+
+# ╔═╡ 20326466-4c13-11eb-33f7-571100d96ade
+attrs = attributes(nodes(divs[3])[2])
+
+# ╔═╡ 28d506b8-4c14-11eb-1513-ab1f51b48641
+function attstring(a)
+	"""$(a.name)="$(a.content)" """
+end
+
+# ╔═╡ 727bc180-4c14-11eb-02d1-3db3384fab77
+map(a -> attstring(a), attrs)
+
+# ╔═╡ 82585596-4c14-11eb-3d9b-d370c6e01a6e
+function nodeopen(n)
+	#"""<$(n.name) $(attstring(attributes(n)))>"""
+	"<$(n.name) " * join(map(a -> attstring(a), attributes(n)),"") * ">"
+end
+
+# ╔═╡ edc0d2c2-4c14-11eb-28e9-af0db772ce4c
+nodeopen(divs[1])
+
+# ╔═╡ c23b3ca0-4c14-11eb-3b5f-cb7fd7f04b95
+divs[1].name
+
+# ╔═╡ 5c791f8a-4c15-11eb-34ef-d5fa1fed5dc3
+join(map(a -> attstring(a), attributes(divs[1])), " ")
+
+# ╔═╡ 34fa49d0-4c14-11eb-1195-1332e2649c27
+attrs[1]
+
+# ╔═╡ 296308c4-4c13-11eb-3e78-159a247a3a45
+attrs[1].name
+
+# ╔═╡ 1c0363c6-4c14-11eb-3a4c-c3e3a761f055
+attrs[1].content
+
+# ╔═╡ 5b5e04b8-4c14-11eb-2bb8-69eedf8a603e
+attstring(attrs[1])
 
 # ╔═╡ Cell order:
 # ╟─74a04cec-4c0f-11eb-342a-4febe21b36da
@@ -75,6 +123,20 @@ findall("//ns:div", doc.root, ["ns"=> tei])
 # ╠═7eee7f88-4c10-11eb-06b3-e5d98838308e
 # ╠═8aa587ce-4c10-11eb-3f8e-552c82686791
 # ╠═921e7a68-4c10-11eb-1c26-f98aec9e0c49
-# ╠═687e3724-4c11-11eb-1e64-fb6efd5802ab
 # ╠═c04206f2-4c11-11eb-31c4-45d878cb2532
+# ╠═687e3724-4c11-11eb-1e64-fb6efd5802ab
 # ╠═fd0f6938-4c11-11eb-312f-c95356a03933
+# ╠═ed65231a-4c13-11eb-278e-f9f4d1af5c57
+# ╠═93e465f4-4c12-11eb-2491-413112e60d3f
+# ╠═968d136e-4c12-11eb-1043-39e7d6df24f0
+# ╠═20326466-4c13-11eb-33f7-571100d96ade
+# ╠═727bc180-4c14-11eb-02d1-3db3384fab77
+# ╠═28d506b8-4c14-11eb-1513-ab1f51b48641
+# ╠═82585596-4c14-11eb-3d9b-d370c6e01a6e
+# ╠═edc0d2c2-4c14-11eb-28e9-af0db772ce4c
+# ╠═c23b3ca0-4c14-11eb-3b5f-cb7fd7f04b95
+# ╠═5c791f8a-4c15-11eb-34ef-d5fa1fed5dc3
+# ╠═34fa49d0-4c14-11eb-1195-1332e2649c27
+# ╠═296308c4-4c13-11eb-3e78-159a247a3a45
+# ╠═1c0363c6-4c14-11eb-3a4c-c3e3a761f055
+# ╠═5b5e04b8-4c14-11eb-2bb8-69eedf8a603e
