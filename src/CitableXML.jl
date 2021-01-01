@@ -17,4 +17,9 @@ function attstring(a)
 	"""$(a.name)="$(a.content)" """
 end
 
+
+function collecttext(e, s)
+    # To be implemented
+end
+
 end # module
