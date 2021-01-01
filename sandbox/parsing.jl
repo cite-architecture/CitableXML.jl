@@ -70,6 +70,23 @@ kiddos = nodes(r)
 # ╔═╡ b7a622ee-4c16-11eb-2605-c936fa2eb71d
 typeof(kiddos[1])
 
+# ╔═╡ f274ff54-4c1a-11eb-140a-c97fc34d54a2
+
+
+# ╔═╡ 057d4246-4c1b-11eb-0e17-bffbad112706
+function cprecursive(a1, a2)
+	if isempty(a1)
+		a2
+	else
+		header = pop!(a1)
+		cprecursive(a1, push!(a2, header))
+	end
+
+end
+
+# ╔═╡ 865fc096-4c1b-11eb-0842-03d4bb37aa5d
+cprecursive(["a1","b2","ce","d4"], [])
+
 # ╔═╡ 0994c86c-4c17-11eb-2546-0d6cfa2c66d0
 function typedreply(n)
 	if n.type === EzXML.ELEMENT_NODE begin
@@ -171,6 +188,9 @@ elementopen(divs[1])
 # ╠═8aa587ce-4c10-11eb-3f8e-552c82686791
 # ╠═ae26b88c-4c16-11eb-1810-773fd7111ee0
 # ╠═b7a622ee-4c16-11eb-2605-c936fa2eb71d
+# ╠═f274ff54-4c1a-11eb-140a-c97fc34d54a2
+# ╠═057d4246-4c1b-11eb-0e17-bffbad112706
+# ╠═865fc096-4c1b-11eb-0842-03d4bb37aa5d
 # ╠═0994c86c-4c17-11eb-2546-0d6cfa2c66d0
 # ╠═7fc2677e-4c17-11eb-22d6-5366b20f834f
 # ╠═28fdaa66-4c17-11eb-1b16-6d2ebb7cfbd4
